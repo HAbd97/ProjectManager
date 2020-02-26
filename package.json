@@ -1,0 +1,19 @@
+{
+  "name": "projectmanager",
+  "version": "1.0.0",
+  "description": "Project Manager",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gopikabala14/ProjectManager.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gopikabala14/ProjectManager/issues"
+  },
+  "homepage": "https://github.com/gopikabala14/ProjectManager#readme"
+}
