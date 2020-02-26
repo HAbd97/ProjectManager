@@ -10,7 +10,7 @@ namespace Project_Management.Controllers
 {
     public class DashBoardController : ApiController
     {
-        ProjectManagerEntities db = new ProjectManagerEntities();
+        ProjectManagerEntities1 db = new ProjectManagerEntities1();
         public HttpResponseMessage Get()
         {
             var data = from res in db.Project_tbl select new { res.Project, res.EstimatedHours };

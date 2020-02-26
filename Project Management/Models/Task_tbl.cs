@@ -17,12 +17,12 @@ namespace Project_Management.Models
         public int TaskId { get; set; }
         public int EmpId { get; set; }
         public string TaskName { get; set; }
+        public string Description { get; set; }
         public Nullable<int> ProjectId { get; set; }
         public decimal ConsumedHours { get; set; }
         public decimal EstimatedHours { get; set; }
         public System.DateTime TaskDate { get; set; }
         public string Status { get; set; }
-        public string Description { get; set; }
         public Nullable<decimal> Deviation { get; set; }
     }
 }

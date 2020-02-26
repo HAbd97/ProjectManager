@@ -13,10 +13,10 @@ namespace Project_Management.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ProjectManagerEntities : DbContext
+    public partial class ProjectManagerEntities1 : DbContext
     {
-        public ProjectManagerEntities()
-            : base("name=ProjectManagerEntities")
+        public ProjectManagerEntities1()
+            : base("name=ProjectManagerEntities1")
         {
         }
     
@@ -26,7 +26,7 @@ namespace Project_Management.Models
         }
     
         public virtual DbSet<Employee_tbl> Employee_tbl { get; set; }
-        public virtual DbSet<Task_tbl> Task_tbl { get; set; }
         public virtual DbSet<Project_tbl> Project_tbl { get; set; }
+        public virtual DbSet<Task_tbl> Task_tbl { get; set; }
     }
 }

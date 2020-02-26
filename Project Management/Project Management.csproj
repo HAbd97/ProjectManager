@@ -208,8 +208,8 @@
     <Content Include="Global.asax" />
     <Content Include="Models\ProjectManagerModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ProjectManagerModel.Context.cs</LastGenOutput>
       <DependentUpon>ProjectManagerModel.edmx</DependentUpon>
+      <LastGenOutput>ProjectManagerModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\ProjectManagerModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
