@@ -10,8 +10,10 @@ namespace Project_Management.Controllers
 {
     public class TaskController : ApiController
     {
+        //Model Object Creation
         ProjectManagerEntities1 db = new ProjectManagerEntities1();
 
+        //Adding Task
         public void Post(Task_tbl dtask)
         {
             if (ModelState.IsValid)
@@ -21,18 +23,21 @@ namespace Project_Management.Controllers
             }
         }
 
+        //Get All Task data
         public HttpResponseMessage Get()
         {
             var data = db.Task_tbl.ToList();
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
+        //Get Task data by Id
         public HttpResponseMessage Get(int id)
         {
             var data = db.Task_tbl.Find(id);
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
+        //Search tasks by Project Name
         public HttpResponseMessage Get(string projName)
         {
             List<SearchModel> src = new List<SearchModel>();
@@ -54,6 +59,7 @@ namespace Project_Management.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, src);
         }
 
+        //Search tasks by From-To dates 
         public HttpResponseMessage Get(DateTime fromDate, DateTime toDate)
         {
             List<SearchModel> src = new List<SearchModel>();

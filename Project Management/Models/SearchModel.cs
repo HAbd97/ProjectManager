@@ -5,6 +5,7 @@ using System.Web;
 
 namespace Project_Management.Models
 {
+    //Model for Search Page 
     public class SearchModel
     {
         public string TaskName { get; set; }
