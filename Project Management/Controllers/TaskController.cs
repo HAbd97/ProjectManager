@@ -10,7 +10,7 @@ namespace Project_Management.Controllers
 {
     public class TaskController : ApiController
     {
-        ProjectManagerEntities db = new ProjectManagerEntities();
+        ProjectManagerEntities1 db = new ProjectManagerEntities1();
 
         public void Post(Task_tbl dtask)
         {
