@@ -37,8 +37,9 @@ namespace Project_Management.Controllers
         {
             List<SearchModel> src = new List<SearchModel>();
             src = (from tsk in db.Task_tbl
-                   join emp in db.Employee_tbl on tsk.EmpId equals emp.EmpId
                    join prj in db.Project_tbl on tsk.ProjectId equals prj.ProjectId
+                   join emp in db.Employee_tbl on tsk.EmpId equals emp.EmpId
+                   where proj==prj.Project 
                    select new SearchModel
                    {
                        TaskName = tsk.TaskName,
@@ -52,5 +53,11 @@ namespace Project_Management.Controllers
                    }).ToList();
             return Request.CreateResponse(HttpStatusCode.OK, src);
         }
+
+        //public HttpResponseMessage Get(DateTime fd,DateTime td)
+        //{
+        //    List
+        //    return Request.CreateResponse(HttpStatusCode.OK, src);
+        //}
     }
 }
