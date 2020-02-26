@@ -35,10 +35,29 @@ namespace Project_Management.Controllers
 
         public HttpResponseMessage Get(string proj)
         {
-            SearchModel src = new SearchModel();
-
-            var data = db.Project_tbl.Where(a => a.Project == proj).ToList().FirstOrDefault();
-            return Request.CreateResponse(HttpStatusCode.OK, data);
+            List<SearchModel> src = new List<SearchModel>();
+            src = (from tsk in db.Task_tbl
+                   join prj in db.Project_tbl on tsk.ProjectId equals prj.ProjectId
+                   join emp in db.Employee_tbl on tsk.EmpId equals emp.EmpId
+                   where proj==prj.Project 
+                   select new SearchModel
+                   {
+                       TaskName = tsk.TaskName,
+                       EmployeeName = emp.EmpName,
+                       ProjectName = prj.Project,
+                       EstimatedHours = tsk.EstimatedHours,
+                       ConsumedHours = tsk.ConsumedHours,
+                       Deviation = tsk.Deviation,
+                       Status = tsk.Status,
+                       Date = tsk.TaskDate
+                   }).ToList();
+            return Request.CreateResponse(HttpStatusCode.OK, src);
         }
+
+        //public HttpResponseMessage Get(DateTime fd,DateTime td)
+        //{
+        //    List
+        //    return Request.CreateResponse(HttpStatusCode.OK, src);
+        //}
     }
 }
