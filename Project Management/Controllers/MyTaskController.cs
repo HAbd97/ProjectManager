@@ -10,7 +10,7 @@ namespace Project_Management.Controllers
 {
     public class MyTaskController : ApiController
     {
-        
+        //Get /api/MyTask
         public HttpResponseMessage Get()
         {
             ProjectManagerEntities1 db = new ProjectManagerEntities1();
@@ -31,14 +31,15 @@ namespace Project_Management.Controllers
                           }).ToList();
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
-    
-    public HttpResponseMessage Put(int id)
-    {
-        ProjectManagerEntities1 db = new ProjectManagerEntities1();
+
+        //Post /api/MyTask with id and status
+        public HttpResponseMessage Post(int id, string status)
+        {
+            ProjectManagerEntities1 db = new ProjectManagerEntities1();
             var result = db.Task_tbl.SingleOrDefault(b => b.TaskId == id);
             if (result != null)
             {
-                result.Status = "Changed";
+                result.Status = status;
                 db.SaveChanges();
             }
             return Request.CreateResponse(HttpStatusCode.OK, result);
