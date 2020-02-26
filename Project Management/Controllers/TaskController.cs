@@ -33,13 +33,13 @@ namespace Project_Management.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
-        public HttpResponseMessage Get(string proj)
+        public HttpResponseMessage Get(string projName)
         {
             List<SearchModel> src = new List<SearchModel>();
             src = (from tsk in db.Task_tbl
                    join prj in db.Project_tbl on tsk.ProjectId equals prj.ProjectId
                    join emp in db.Employee_tbl on tsk.EmpId equals emp.EmpId
-                   where proj==prj.Project 
+                   where projName == prj.Project 
                    select new SearchModel
                    {
                        TaskName = tsk.TaskName,
@@ -54,10 +54,24 @@ namespace Project_Management.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, src);
         }
 
-        //public HttpResponseMessage Get(DateTime fd,DateTime td)
-        //{
-        //    List
-        //    return Request.CreateResponse(HttpStatusCode.OK, src);
-        //}
+        public HttpResponseMessage Get(DateTime fromDate, DateTime toDate)
+        {
+            List<SearchModel> src = new List<SearchModel>();
+            src = (from tsk in db.Task_tbl
+                   join prj in db.Project_tbl on tsk.ProjectId equals prj.ProjectId
+                   join emp in db.Employee_tbl on tsk.EmpId equals emp.EmpId
+                   where tsk.TaskDate >= fromDate && tsk.TaskDate <= toDate
+                   select new SearchModel {
+                       TaskName = tsk.TaskName,
+                       EmployeeName = emp.EmpName,
+                       ProjectName = prj.Project,
+                       EstimatedHours = tsk.EstimatedHours,
+                       ConsumedHours = tsk.ConsumedHours,
+                       Deviation = tsk.Deviation,
+                       Status = tsk.Status,
+                       Date = tsk.TaskDate
+                   }).ToList();
+            return Request.CreateResponse(HttpStatusCode.OK, src);
+        }
     }
 }
