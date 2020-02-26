@@ -7,11 +7,12 @@ namespace Project_Management.Models
 {
     public class CompleteTask
     {
-        public string TaskName { get; set; }
-        public string ProjectName { get; set; }
-        public decimal EstimatedHours { get; set; }
-        public decimal? ConsumedHours { get; set; }
-        public decimal? Deviation { get; set; }
-        public string Status { get; set; }
+            public string TaskName { get; set; }
+            public string ProjectName { get; set; }
+            public decimal EstimatedHours { get; set; }
+            public decimal? ConsumedHours { get; set; }
+            public decimal? Deviation { get; set; }
+            public string Status { get; set; }
+        
     }
 }
