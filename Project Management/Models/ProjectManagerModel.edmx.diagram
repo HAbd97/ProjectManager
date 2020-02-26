@@ -7,7 +7,7 @@
       <Diagram DiagramId="d1bc68b304434335bf369c1b94e9a020" Name="Diagram1">
         <EntityTypeShape EntityType="ProjectManagerModel.Employee_tbl" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ProjectManagerModel.Project_tbl" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectManagerModel.Task_tbl" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.Task_tbl" Width="1.5" PointX="5.125" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
