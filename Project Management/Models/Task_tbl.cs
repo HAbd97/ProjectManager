@@ -19,7 +19,7 @@ namespace Project_Management.Models
         public string TaskName { get; set; }
         public string Description { get; set; }
         public Nullable<int> ProjectId { get; set; }
-        public decimal ConsumedHours { get; set; }
+        public Nullable<decimal> ConsumedHours { get; set; }
         public decimal EstimatedHours { get; set; }
         public System.DateTime TaskDate { get; set; }
         public string Status { get; set; }

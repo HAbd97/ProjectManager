@@ -10,7 +10,7 @@ namespace Project_Management.Models
         public string TaskName { get; set; }
         public string Description { get; set; }
         public string EmpName { get; set; }
-        public decimal ConsumedHours { get; set; }
+        public decimal? ConsumedHours { get; set; }
         public decimal EstimatedHours { get; set; }
         public decimal? Derivation { get; set; }
         public DateTime  Date { get; set; }

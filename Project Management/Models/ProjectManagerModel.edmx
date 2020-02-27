@@ -34,7 +34,7 @@
           <Property Name="TaskName" Type="varchar" MaxLength="20" />
           <Property Name="Description" Type="nvarchar" MaxLength="100" />
           <Property Name="ProjectId" Type="int" />
-          <Property Name="ConsumedHours" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ConsumedHours" Type="decimal" Precision="18" Scale="0" />
           <Property Name="EstimatedHours" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="TaskDate" Type="date" Nullable="false" />
           <Property Name="Status" Type="varchar" MaxLength="20" />
@@ -78,7 +78,7 @@
           <Property Name="TaskName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ProjectId" Type="Int32" />
-          <Property Name="ConsumedHours" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ConsumedHours" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="EstimatedHours" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="TaskDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
