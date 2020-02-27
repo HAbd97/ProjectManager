@@ -33,12 +33,13 @@ namespace Project_Management.Controllers
         }
 
         //Post /api/MyTask with id and status
-        public HttpResponseMessage Post(int id, string status)
+        public HttpResponseMessage Post(int id,  int conHour, string status)
         {
             ProjectManagerEntities1 db = new ProjectManagerEntities1();
             var result = db.Task_tbl.SingleOrDefault(b => b.TaskId == id);
             if (result != null)
             {
+                result.ConsumedHours = conHour;
                 result.Status = status;
                 db.SaveChanges();
             }
