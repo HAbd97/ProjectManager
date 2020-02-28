@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Net.Http.Headers;
+using System.Web.Http.Cors;
 
 namespace Project_Management
 {
@@ -9,6 +11,7 @@ namespace Project_Management
     {
         public static void Register(HttpConfiguration config)
         {
+            
             // Web API configuration and services
 
             // Web API routes
@@ -19,6 +22,10 @@ namespace Project_Management
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
+
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
         }
     }
 }

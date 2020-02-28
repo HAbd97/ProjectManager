@@ -4,12 +4,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using Project_Management.Models;
 
 namespace Project_Management.Controllers
 {
     public class TaskController : ApiController
     {
+        //[EnableCors(origins: "http://localhost:44391/api/", headers: "*", methods: "*")]
         //Model Object Creation
         ProjectManagerEntities1 db = new ProjectManagerEntities1();
 
@@ -24,11 +26,11 @@ namespace Project_Management.Controllers
         }
 
         //Get All Task data
-        public HttpResponseMessage Get()
-        {
-            var data = db.Task_tbl.ToList();
-            return Request.CreateResponse(HttpStatusCode.OK, data);
-        }
+        //public HttpResponseMessage Get()
+        //{
+        //    var data = db.Task_tbl.ToList();
+        //    return Request.CreateResponse(HttpStatusCode.OK, data);
+        //}
 
         //Get Task data by Id
         public HttpResponseMessage Get(int id)

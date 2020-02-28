@@ -5,11 +5,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Project_Management.Controllers
 {
     public class MyTaskController : ApiController
     {
+        [EnableCors(origins: "http://localhost:3000", headers: "*", methods: "*")]
         //Get /api/MyTask
         public HttpResponseMessage Get()
         {
