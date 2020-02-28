@@ -37,9 +37,15 @@
   }
 }
 .navwidth{
-  width:150px;
-  float: left;
+ 
+  margin-left: 0;
+
+  
+  
+}
+body{
+  background-color: rgb(255, 255, 255);
 }
 .navfloat{
-  float: left;
+ 
 }
