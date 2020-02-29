@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 class Navbar extends React.Component {
+  
   render() {
     return (
       <div>
@@ -54,7 +55,7 @@ class Navbar extends React.Component {
               <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link disabled " href="#">
+                    <a class="nav-link " href="/">
                       Logout
                     </a>
                   </li>
