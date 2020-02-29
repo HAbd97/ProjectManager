@@ -7,7 +7,7 @@ class Navbar extends React.Component {
       <div>
         <div className="row container-fluid">
 
-          <div className="col-lg-3 sidebar container-fluid">
+          <div className="col-lg-3 sidebar sidebarwidth container-fluid">
             <div
               class="nav flex-column nav-pills bg-light navwidth"
               id="v-pills-tab"
@@ -37,9 +37,16 @@ class Navbar extends React.Component {
               >
                 Search
               </a>
+              <a href="/"
+                class="nav-link"
+              >
+                 <i class="fa fa-user" aria-hidden="true"></i>
+                Logout
+               
+              </a>
             </div>
           </div>
-          <div className="col-lg-8 container-fluid">
+          {/* <div className="col-lg-8 container-fluid">
             <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-end navfloat">
               <button
                 class="navbar-toggler"
@@ -62,7 +69,7 @@ class Navbar extends React.Component {
                 </ul>
               </div>
             </nav>
-          </div>
+          </div> */}
         </div>
       </div>
     );

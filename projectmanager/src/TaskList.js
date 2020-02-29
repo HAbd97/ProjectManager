@@ -32,6 +32,8 @@ class TaskList extends React.Component {
                 <td>{tasks.ConsumedHours}</td>
                 <td>{tasks.Deviation}</td>
                 <td>{tasks.Status}</td>
+             
+
               </tr>
             );
           });
@@ -58,10 +60,19 @@ class TaskList extends React.Component {
           <div className="container-fluid">
             <div className="row">
               <div className="col-md-8 container-fluid">
-                <div className="card">
+                <div className="card tasklist">
                   <div className="card-header card-header-primary">
                     <h4 className="card-title ">TaskList</h4>
                     <p className="card-category"> List of all your tasks </p>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link " href="/">
+                      Logout
+                    </a>
+                  </li>
+                </ul>
+              </div>
                   </div>
                   <div className="card-body">
                     <div className="table-responsive">
@@ -73,10 +84,40 @@ class TaskList extends React.Component {
                           <th>Consumed Hours</th>
                           <th>Deviation</th>
                           <th>Status</th>
+                          <th> <div class="btn-group">
+                        {/* <button
+                          type="button"
+                          class="btn btn-danger dropdown-toggle"
+                          data-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                        >
+                          Search By project
+                        </button> */}
+                        {/* <div class="dropdown-menu">
+                          <a class="dropdown-item" href="#">
+                            Action
+                          </a>
+                          <a class="dropdown-item" href="#">
+                            Another action
+                          </a>
+                          <a class="dropdown-item" href="#">
+                            Something else here
+                          </a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="#">
+                            Separated link
+                          </a>
+                        </div> */}
+                      </div></th>
+                          {/* <td><a href="/UpdateTask">Update</a></td> */}
                         </thead>
                         <tbody>{this.state.namesList}</tbody>
                       </table>
                     </div>
+                    <a href="/UpdateTask"><button type="submit" class="btn btn-primary pull-right">
+                        Update Task
+                      </button></a>
                   </div>
                 </div>
               </div>

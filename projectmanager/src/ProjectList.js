@@ -27,7 +27,7 @@ class ProjectList extends React.Component {
             // const { task, project, estimatedhour, consumedhour, deviation, status } = tasks //destructuring
             return (
               <tr key={tasks.Project}>
-                <td>{tasks.Project}</td>
+                <td><a href="/TaskList">{tasks.Project}</a></td>
                 <td>{tasks.EstimatedHours}</td>
                 {/* <td>{tasks.ActualHours}</td>
                                   

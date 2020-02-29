@@ -10,6 +10,7 @@ import ProjectList from "./ProjectList";
 import TaskList from "./TaskList";
 import Search from "./Search";
 import AddTask from "./AddTask";
+import UpdateTask from "./UpdateTask";
 import { BrowserRouter, Route } from "react-router-dom";
 class App extends React.Component {
   render() {
@@ -22,6 +23,7 @@ class App extends React.Component {
             <Route exact path="/ProjectList" component={ProjectList}></Route>
             <Route exact path="/AddTask" component={AddTask}></Route>
             <Route exact path="/Search" component={Search}></Route>
+            <Route exact path="/UpdateTask" component={UpdateTask}></Route>
           </div>
         </BrowserRouter>
       </div>
