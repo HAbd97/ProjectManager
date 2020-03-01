@@ -30,8 +30,8 @@ class UserLogin extends React.Component {
       headers: {
         Accept: "application/json"
       },
-      project: this.state.project,
-      task: this.state.task,
+      username: this.state.username,
+      password: this.state.password,
     })
       .then(res => res.json())
       .then(
