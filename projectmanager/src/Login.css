@@ -18,3 +18,25 @@
     .updatetask{    width: 1095px;}
     .search{    width: 1095px;}
     .projectlist{    width: 1100px;}
+    /* body{
+      background-image: url("../public/assets/img/cover.jpg");
+      background-size:contain;
+      background-position:top;
+      background: cover;
+  } */
+    /* .backimg {
+			background-image: url('../assets/img/cover.jpg');
+			background-repeat: "no-repeat";
+			background-position: "center center";
+			background-size: "cover";
+			background-attachment: "fixed";
+			height: "100%"
+    } */
+    .bgcolor{
+      /* background-color: #b170bc; */
+      background-color: purple;
+    }
+    .cardpadding{margin-top: 195px;}
+    .calendaricon{font-size:50px;color:red;}
+    /* .sidebarsize{font-size:20px;} */
+    

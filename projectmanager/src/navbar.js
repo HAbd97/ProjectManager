@@ -14,6 +14,7 @@ class Navbar extends React.Component {
               role="tablist"
               aria-orientation="vertical"
             >
+              <h3><i class="fa fa-calendar"  ></i>PMTracker</h3>
               <a
                 class="nav-link"
                 href="/ProjectList"
@@ -41,7 +42,7 @@ class Navbar extends React.Component {
                 class="nav-link"
               >
                  <i class="fa fa-user" aria-hidden="true"></i>
-                Logout
+                <p>Logout</p>
                
               </a>
             </div>

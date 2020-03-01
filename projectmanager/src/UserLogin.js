@@ -60,11 +60,18 @@ class UserLogin extends React.Component {
   render() {
     return (
       <div>
+        <div className="row">
+        <div className="col-md-12 container-fluid">
+        <div className="card-header card-header-primary">
+                    <h4 className="card-title">PMTracker</h4>
+                  </div>
+        </div>
+        </div>  
         <div className="content">
           <div className="container-fluid">
             <div className="row">
               <div className="col-md-8 container-fluid">
-                <div className="card">
+                <div className="card cardpadding">
                   <div className="card-header card-header-primary">
                     <h4 className="card-title">Login</h4>
                   </div>
