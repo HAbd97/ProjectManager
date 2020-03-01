@@ -24,10 +24,12 @@ class ProjectList extends React.Component {
         result => {
           var namesList = result.map((tasks, index) => {
             console.log(tasks);
-            // const { task, project, estimatedhour, consumedhour, deviation, status } = tasks //destructuring
+            localStorage.setItem('project', JSON.stringify(tasks.Project) );
+            
             return (
+              
               <tr key={tasks.Project}>
-                <td><a href="/TaskList">{tasks.Project}</a></td>
+                <td><a href="/AllTasks">{tasks.Project}</a></td>
                 <td>{tasks.EstimatedHours}</td>
                 {/* <td>{tasks.ActualHours}</td>
                                   
@@ -58,7 +60,7 @@ class ProjectList extends React.Component {
           <div className="container-fluid">
             <div className="row">
               <div className="col-md-8 container-fluid">
-                <div className="card">
+                <div className="card projectlist">
                   <div className="card-header card-header-primary">
                     <h4 className="card-title ">Project List</h4>
                     <p className="card-category"> List of all your tasks </p>
@@ -67,7 +69,7 @@ class ProjectList extends React.Component {
                     <div className="table-responsive">
                       <table className="table" id="tasks">
                         <thead className=" text-primary">
-                          <th>Project</th>
+                          <th className="projectpadding">Project</th>
                           <th>Estimated Hours</th>
                         </thead>
                         <tbody>{this.state.namesList}</tbody>

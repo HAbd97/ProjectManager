@@ -3,36 +3,37 @@ import "./Login.css";
 import axios from "axios";
 import Navbar from "./navbar";
 
-class TaskList extends React.Component {
+class AllTasks extends React.Component {
  
   constructor(props) {
     super(props);
     this.state = {};
   }
-  // TableData() {
-
+//   logout = (event)=>{
+//         session =0;
+//   }
   componentDidMount() {
-    var session; 
+    var employeeName; 
     console.log("inside function 123");
-    session = localStorage.getItem('session');
-    if(session == 1)
-    {
-    
-    fetch("https://localhost:44391/api/MyTask", {
+    employeeName = JSON.parse(localStorage.getItem('user')) ;
+    console.log("Employee",employeeName);
+    var project = JSON.parse(localStorage.getItem('project'))
+    fetch("https://localhost:44391/api/Dashboard",{
       method: "GET",
       headers: {
         Accept: "application/json"
-      }
+      },
+      project:project
+      
     })
       .then(res => res.json())
       .then(
         result => {
           var namesList = result.map((tasks, index) => {
-           
             return (
               <tr key={tasks.TaskName}>
                 <td>{tasks.TaskName}</td>
-                <td>{tasks.ProjectName}</td>
+                <td>{tasks.employeeName}</td>
                 <td>{tasks.EstimatedHours}</td>
                 <td>{tasks.ConsumedHours}</td>
                 <td>{tasks.Deviation}</td>
@@ -52,14 +53,7 @@ class TaskList extends React.Component {
           console.log(error);
         }
       );
-    //   this.setState({task:task});
     console.log("after fetch");
-  }
-  else{
-    alert("Not a valid user..!!");
-    this.props.history.push("/ProjectList");
-  }
-    
 }
 
   render() {
@@ -73,12 +67,12 @@ class TaskList extends React.Component {
               <div className="col-md-8 container-fluid">
                 <div className="card tasklist">
                   <div className="card-header card-header-primary">
-                    <h4 className="card-title ">TaskList</h4>
-                    <p className="card-category"> List of all your tasks </p>
+                    <h4 className="card-title ">All Tasks</h4>
+                    <p className="card-category"> List of tasks </p>
                     <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link " href="/">
+                    <a class="nav-link " onClick={this.logout} href="/">
                       Logout
                     </a>
                   </li>
@@ -90,45 +84,17 @@ class TaskList extends React.Component {
                       <table className="table" id="tasks">
                         <thead className=" text-primary">
                           <th>Task</th>
-                          <th>Project</th>
+                          {/* <th>Project</th> */}
                           <th>Estimated Hours</th>
                           <th>Consumed Hours</th>
                           <th>Deviation</th>
                           <th>Status</th>
                           <th> <div class="btn-group">
-                        {/* <button
-                          type="button"
-                          class="btn btn-danger dropdown-toggle"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          Search By project
-                        </button> */}
-                        {/* <div class="dropdown-menu">
-                          <a class="dropdown-item" href="#">
-                            Action
-                          </a>
-                          <a class="dropdown-item" href="#">
-                            Another action
-                          </a>
-                          <a class="dropdown-item" href="#">
-                            Something else here
-                          </a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">
-                            Separated link
-                          </a>
-                        </div> */}
                       </div></th>
-                          {/* <td><a href="/UpdateTask">Update</a></td> */}
                         </thead>
                         <tbody>{this.state.namesList}</tbody>
                       </table>
                     </div>
-                    <a href="/UpdateTask"><button type="submit" class="btn btn-primary pull-right">
-                        Update Task
-                      </button></a>
                   </div>
                 </div>
               </div>
@@ -139,4 +105,4 @@ class TaskList extends React.Component {
     );
   }
 }
-export default TaskList;
+export default AllTasks;

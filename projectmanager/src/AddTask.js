@@ -5,6 +5,7 @@ import axios from "axios";
 import Navbar from "./navbar";
 
 class AddTask extends React.Component {
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -36,13 +37,16 @@ class AddTask extends React.Component {
     this.setState({ date: event.target.value });
   };
   addTask = event => {
+    var session = localStorage.getItem('session');
+    console.log("session", session)
+    if(session == 1)
+    {
     alert(this.state.project);
     console.log("Inside submit button");
     event.preventDefault();
     // var msg = "";
 
-    axios
-      .post("https://localhost:44391/api/Task", {
+    axios.post("https://localhost:44391/api/Task", {
         project: this.state.project,
         task: this.state.task,
         description: this.state.description,
@@ -64,6 +68,11 @@ class AddTask extends React.Component {
 
         // this.setState({ msg: msg });
       });
+    }
+    else{
+      alert("Not a valid user.....!!");
+      this.props.history.push("/ProjectList");
+    }
   };
   render() {
     return (

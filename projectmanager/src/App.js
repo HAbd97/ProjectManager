@@ -3,7 +3,7 @@ import logo from "./logo.svg";
 import Navbar from "./navbar";
 import "./App.css";
 import Test from "./Test";
-
+import AllTasks from './AllTasks';
 import Login1 from "./Login1";
 import UserLogin from "./UserLogin";
 import ProjectList from "./ProjectList";
@@ -21,6 +21,7 @@ class App extends React.Component {
             <Route exact path="/" component={UserLogin}></Route>
             <Route exact path="/TaskList" component={TaskList}></Route>
             <Route exact path="/ProjectList" component={ProjectList}></Route>
+            <Route exact path="/AllTasks" component={AllTasks}></Route>
             <Route exact path="/AddTask" component={AddTask}></Route>
             <Route exact path="/Search" component={Search}></Route>
             <Route exact path="/UpdateTask" component={UpdateTask}></Route>

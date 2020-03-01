@@ -21,6 +21,7 @@ class UserLogin extends React.Component {
     // console.log("Inside submit button");
     event.preventDefault();
     var msg = "";
+    var session ;
     alert(this.state.username);
     alert(this.state.password);
 
@@ -28,7 +29,9 @@ class UserLogin extends React.Component {
       method: "GET",
       headers: {
         Accept: "application/json"
-      }
+      },
+      project: this.state.project,
+      task: this.state.task,
     })
       .then(res => res.json())
       .then(
@@ -36,6 +39,10 @@ class UserLogin extends React.Component {
           console.log(result);
           if (result) {
             alert("Successful Login");
+            session = 1;
+            localStorage.setItem('user', JSON.stringify(result.username));
+            localStorage.setItem('session',1);
+            
             this.props.history.push("/TaskList");
           } else {
             this.props.history.push("/");

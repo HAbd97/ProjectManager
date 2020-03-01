@@ -21,7 +21,10 @@ class Search extends React.Component {
     event.preventDefault();
   };
   projectChange = event => {
-
+    var session = localStorage.getItem('session');
+    console.log("session", session)
+    if(session == 1)
+    {
 axios.get("https://localhost:44391/api/Task", {
         project: this.state.project
       })
@@ -49,7 +52,15 @@ axios.get("https://localhost:44391/api/Task", {
       );
     console.log("after fetch");
   }
+  else{
+    alert("Invalid user....!!")
+  }
+}
   byDate = event => {
+    var session = localStorage.getItem('session');
+    console.log("session", session)
+    if(session == 1)
+    {
     axios.get("https://localhost:44391/api/Task", {
         fromDate: this.state.datefrom,
         toDate: this.state.dateto
@@ -77,6 +88,10 @@ axios.get("https://localhost:44391/api/Task", {
         }
       );
     console.log("after fetch");
+      }
+      else{
+        alert("Invalid User...!!")
+      }
   };
   render() {
     return (
