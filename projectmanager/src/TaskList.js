@@ -9,8 +9,13 @@ class TaskList extends React.Component {
     super(props);
     this.state = {};
   }
-  // TableData() {
-
+  // getId =(pid, tid) =>
+  // {
+  //   localStorage.setItem('projectid',pid );
+  //   localStorage.setItem('taskid',tid );
+  //   console.log("id",pid, tid);
+  //   // this.props.history.push("/UpdateTask")
+  // }
   componentDidMount() {
     var session; 
     console.log("inside function 123");
@@ -27,17 +32,22 @@ class TaskList extends React.Component {
       .then(res => res.json())
       .then(
         result => {
+         
           var namesList = result.map((tasks, index) => {
-           
+            // localStorage.setItem('projectid1', tasks.ProjectId);
             return (
+              
               <tr key={tasks.TaskName}>
+                 <td>{tasks.ProjectName}</td>
                 <td>{tasks.TaskName}</td>
-                <td>{tasks.ProjectName}</td>
+               
                 <td>{tasks.EstimatedHours}</td>
                 <td>{tasks.ConsumedHours}</td>
                 <td>{tasks.Deviation}</td>
-                <td>{tasks.Status}</td>
-             
+                <td>{tasks.Status}</td>     
+                <a href={`/UpdateTask?tid=${tasks.TaskId}&pid=${tasks.ProjectId}`} ><button class="btn btn-primary pull-right">
+                        Update Task
+                      </button></a>
 
               </tr>
             );
@@ -85,12 +95,13 @@ class TaskList extends React.Component {
                 </ul>
               </div>
                   </div>
-                  <div className="card-body">
+                  <div className="card-body scrolldiv">
                     <div className="table-responsive">
                       <table className="table" id="tasks">
                         <thead className=" text-primary">
+                        <th>Project</th>
                           <th>Task</th>
-                          <th>Project</th>
+                          
                           <th>Estimated Hours</th>
                           <th>Consumed Hours</th>
                           <th>Deviation</th>
@@ -126,9 +137,7 @@ class TaskList extends React.Component {
                         <tbody>{this.state.namesList}</tbody>
                       </table>
                     </div>
-                    <a href="/UpdateTask"><button type="submit" class="btn btn-primary pull-right">
-                        Update Task
-                      </button></a>
+                    
                   </div>
                 </div>
               </div>

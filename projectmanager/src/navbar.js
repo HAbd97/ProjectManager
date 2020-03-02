@@ -1,7 +1,18 @@
 import React from "react";
 import "./App.css";
 class Navbar extends React.Component {
-  
+ 
+  logout=(e)=>
+  {
+    var session = localStorage.getItem('session');
+    if(session==1)
+    {
+      session =0;
+      this.props.history.push("/");
+    }
+    
+
+  }
   render() {
     return (
       <div>
@@ -14,7 +25,7 @@ class Navbar extends React.Component {
               role="tablist"
               aria-orientation="vertical"
             >
-              <h3><i class="fa fa-calendar"  ></i>PMTracker</h3>
+              <h3 className="headname"><i class="fa fa-calendar "  ></i>PMTracker</h3>
               <a
                 class="nav-link"
                 href="/ProjectList"
@@ -41,9 +52,11 @@ class Navbar extends React.Component {
               <a href="/"
                 class="nav-link"
               >
-                 <i class="fa fa-user" aria-hidden="true"></i>
-                <p>Logout</p>
-               
+                 {/* <i class="fa fa-user" aria-hidden="true"></i> */}
+                
+                <button type="submit" class="btn btn-primary pull-right"onClick={this.logout}>
+                Logout
+                      </button>
               </a>
             </div>
           </div>

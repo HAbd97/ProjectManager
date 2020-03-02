@@ -17,7 +17,7 @@ class AddTask extends React.Component {
       date: ""
     };
   }
-
+  
   projectChange = event => {
     this.setState({ project: event.target.value });
   };
@@ -36,34 +36,40 @@ class AddTask extends React.Component {
   date = event => {
     this.setState({ date: event.target.value });
   };
+handleChange =event=>{
+  this.setState({ ProjectId: event.target.value });
+}
+
   addTask = event => {
     var session = localStorage.getItem('session');
-    console.log("session", session)
+    var userId = localStorage.getItem('userId');
+    console.log("user", userId)
     if(session == 1)
     {
-    alert(this.state.project);
+    // alert(this.state.ProjectId);
     console.log("Inside submit button");
     event.preventDefault();
     // var msg = "";
 
     axios.post("https://localhost:44391/api/Task", {
-        project: this.state.project,
-        task: this.state.task,
-        description: this.state.description,
+
+        EmpId: 3,
+        TaskName: this.state.task,
+        Description: this.state.description,
+        ProjectId: this.state.ProjectId,
         EstimatedHours: this.state.estimatedHours,
-        consumedHours: this.state.consumedHours,
-        date: this.state.date
+        TaskDate: this.state.date       
       })
 
       .then(res => {
         console.log(res);
-        if (res.data) {
-          alert("Added Your Task");
+        if (res.config.data) {
+          // alert("Added Your Task");
           this.props.history.push("/TaskList");
         } else {
           // msg = "Sorry..Please Try Again";
-          // this.props.history.push("/");
-          alert("Please try again");
+          this.props.history.push("/AddTask");
+          // alert("Please try again");
         }
 
         // this.setState({ msg: msg });
@@ -71,7 +77,7 @@ class AddTask extends React.Component {
     }
     else{
       alert("Not a valid user.....!!");
-      this.props.history.push("/ProjectList");
+      // this.props.history.push("/ProjectList");
     }
   };
   render() {
@@ -92,13 +98,18 @@ class AddTask extends React.Component {
                       <div class="row">
                         <div class="col-md-5">
                           <div class="form-group">
-                            <label class="bmd-label-floating">Project</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              value={this.state.project}
-                              onChange={this.projectChange}
-                            />
+                         <label class="bmd-label-floating">Project</label>
+                            
+                          <div >
+                        <select id="lang" onChange={this.handleChange} value={this.state.ProjectId}>
+                            <option value="1">Astra</option>
+                            <option value="2">Payroll</option>
+                            <option value="3">Foodstore</option>
+                        </select>
+                        <p></p>
+                        <p>{this.state.value}</p>
+                       </div>
+                        
                           </div>
                           {/* <div class="col-md-3">
                         <div class="form-group">
@@ -152,10 +163,11 @@ class AddTask extends React.Component {
                       </div>
                       <div class="row">
                         <div class="col-md-4">
-                          <div class="form-group">
-                            <label class="bmd-label-floating">
+                        <label class="bmd-label-floating">
                               Estimated Hours
                             </label>
+                          <div class="form-group">
+                           
                             <input
                               type="number"
                               class="form-control"
@@ -164,7 +176,7 @@ class AddTask extends React.Component {
                             />
                           </div>
                         </div>
-                        <div class="col-md-4">
+                        {/* <div class="col-md-4">
                           <div class="form-group">
                             <label class="bmd-label-floating">
                               Consumed Hours
@@ -176,12 +188,13 @@ class AddTask extends React.Component {
                               onChange={this.consumedHours}
                             />
                           </div>
-                        </div>
+                        </div> */}
                         <div class="col-md-4">
+                        <label class="bmd-label-floating">Date</label>
                           <div class="form-group">
-                            <label class="bmd-label-floating">Date</label>
+                            
                             <input
-                              type="text"
+                              type="date"
                               class="form-control"
                               value={this.state.date}
                               onChange={this.date}

@@ -29,7 +29,7 @@ class ProjectList extends React.Component {
             return (
               
               <tr key={tasks.Project}>
-                <td><a href="/AllTasks">{tasks.Project}</a></td>
+                <td>{tasks.Project}</td>
                 <td>{tasks.EstimatedHours}</td>
                 {/* <td>{tasks.ActualHours}</td>
                                   

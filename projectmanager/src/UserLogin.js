@@ -22,29 +22,30 @@ class UserLogin extends React.Component {
     event.preventDefault();
     var msg = "";
     var session ;
-    alert(this.state.username);
-    alert(this.state.password);
+    // alert(this.state.username);
+    // alert(this.state.password);
 
-    fetch("https://localhost:44391/api/Login", {
+    fetch(`https://localhost:44391/api/Login?username=${this.state.username}&password=${this.state.password}`, {
       method: "GET",
       headers: {
         Accept: "application/json"
-      },
-      username: this.state.username,
-      password: this.state.password,
+      }
     })
       .then(res => res.json())
       .then(
         result => {
           console.log(result);
-          if (result) {
-            alert("Successful Login");
+          if (result[0].Username==this.state.username && result[0].Password==this.state.password) {
+            // alert("Successful Login");
             session = 1;
-            localStorage.setItem('user', JSON.stringify(result.username));
+            localStorage.setItem('user', JSON.stringify(result[0].Username));
+            localStorage.setItem('userId', result[0].userId);
             localStorage.setItem('session',1);
+            console.log(result[0].Username,result[0].userId);
             
             this.props.history.push("/TaskList");
           } else {
+            // alert("Invalid Username or Password...!!!")
             this.props.history.push("/");
           }
         },
@@ -63,7 +64,7 @@ class UserLogin extends React.Component {
         <div className="row">
         <div className="col-md-12 container-fluid">
         <div className="card-header card-header-primary">
-                    <h4 className="card-title">PMTracker</h4>
+                    <h4 className="card-title headname">PMTracker</h4>
                   </div>
         </div>
         </div>  

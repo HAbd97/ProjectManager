@@ -7,9 +7,13 @@ import Navbar from './navbar';
 class Search extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { datefrom: "", dateto: "", project:""};
+    this.state = { project: "",datefrom: "", dateto: ""};
   }
- 
+ project=(e)=>
+ {
+  this.setState({project:e.target.value})
+  e.preventDefault();
+ }
   dateFrom = event => {
    
     this.setState({ datefrom: event.target.value });
@@ -20,24 +24,34 @@ class Search extends React.Component {
     this.setState({ dateto: event.target.value });
     event.preventDefault();
   };
-  projectChange = event => {
+  byProject = event => {
+console.log(this.state.project)
+    // var projectname = this.setState({ project: event.target.value });;
+    event.preventDefault();
     var session = localStorage.getItem('session');
     console.log("session", session)
     if(session == 1)
     {
 axios.get("https://localhost:44391/api/Task", {
-        project: this.state.project
+       
+      params:{
+        projName: this.state.project
+       } 
       })
-      .then(res => res.json())
+      // .then(res => res.json())
       .then(
         result => {
-          var namesList = result.map((tasks, index) => {
+          var namesList = result.data.map((tasks, index) => {
             return (
-              <tr key={tasks.Task}>
-                <td>{tasks.EmpName}</td>
-                <td>{tasks.Project}</td>
+              <tr key={tasks.TaskName}>
+                <td>{tasks.TaskName}</td>
+                <td>{tasks.ProjectName}</td>
+                <td>{tasks.EmployeeName}</td>
+              
                 <td>{tasks.EstimatedHours}</td>
                 <td>{tasks.ConsumedHours}</td>
+                <td>{tasks.Deviation}</td>
+                <td>{tasks.Status}</td>
                 <td>{tasks.Date}</td>
               </tr>
             );
@@ -45,9 +59,7 @@ axios.get("https://localhost:44391/api/Task", {
 
           this.setState({
             namesList: namesList
-          }).catch(error => {
-            console.log(error.response);
-          });
+          })
         }
       );
     console.log("after fetch");
@@ -56,25 +68,41 @@ axios.get("https://localhost:44391/api/Task", {
     alert("Invalid user....!!")
   }
 }
-  byDate = event => {
+  byDate = (event) => {
+    event.preventDefault();
+    // debugger
     var session = localStorage.getItem('session');
     console.log("session", session)
+    console.log("from",this.state.datefrom);
+    console.log("to ", this.state.dateto);
+    
     if(session == 1)
-    {
+    {   
+      var data1 = this.state.datefrom;
+      var data2 = this.state.dateto; 
+      // var data ={ data1,data2}
+      // console.log(data);
     axios.get("https://localhost:44391/api/Task", {
+      params: {
         fromDate: this.state.datefrom,
-        toDate: this.state.dateto
+       toDate: this.state.dateto  
+      },
+          
       })
-      .then(res => res.json())
+      //.then(res => res.data.json())   
       .then(
-        result => {
-          var namesList = result.map((tasks, index) => {
+        result => {       
+          var namesList = result.data.map((tasks, index) => {
+            console.log("result",tasks)
             return (
-              <tr key={tasks.Task}>
-                <td>{tasks.EmpName}</td>
-                <td>{tasks.Project}</td>
+              <tr key={tasks.TaskName}>
+                <td>{tasks.ProjectName}</td>
+                <td>{tasks.TaskName}</td>
+                <td>{tasks.EmployeeName}</td>       
                 <td>{tasks.EstimatedHours}</td>
                 <td>{tasks.ConsumedHours}</td>
+                <td>{tasks.Deviation}</td>
+                <td>{tasks.Status}</td>
                 <td>{tasks.Date}</td>
               </tr>
             );
@@ -82,19 +110,19 @@ axios.get("https://localhost:44391/api/Task", {
 
           this.setState({
             namesList: namesList
-          }).catch(error => {
-            console.log(error.response);
-          });
+          })
         }
       );
-    console.log("after fetch");
+             console.log("after fetch");
       }
       else{
         alert("Invalid User...!!")
       }
   };
   render() {
+    console.log("Namelist ", this.state.namesList);
     return (
+     
       <div>
       <Navbar/>
         <div class="content">
@@ -112,37 +140,68 @@ axios.get("https://localhost:44391/api/Task", {
                   <div class="card-body">
                     <div class="table-responsive">
                     
-                      <form onSubmit={this.byDate()}>
+                      <form onSubmit={this.byDate}>
                         <div class="row">
                           <div class="col-md-5">
-                            <div class="form-group">
-                              <label class="bmd-label-floating">
+                          <label class="bmd-label-floating">
                                 Date From
                               </label>
+                            <div class="form-group">
+                              
                               <input
-                                type="text"
+                                type="date"
                                 value={this.state.datefrom}
                                 class="form-control"
                                 onChange={this.dateFrom}
                               />
                             </div>
-                          
+                            <label class="bmd-label-floating">Date To</label>
                             <div class="form-group">
-                              <label class="bmd-label-floating">Date To</label>
+                    
                               <input
-                                type="text"
+                                type="date"
                                 value={this.state.dateto}
                                 class="form-control"
                                 onChange={this.dateTo}
                               />
                             </div>
+                          
                             <button
                           type="submit"
                           class="btn btn-primary pull-right"
                         >
                           Search By Date
                         </button>
-                        <div class="btn-group">
+                        </div>
+                        </div>
+                          </form>  
+                          <div>
+
+                          <form onSubmit={this.byProject}>
+                        <div class="row">
+                          <div class="col-md-5">
+                            <div class="form-group">
+                              <label class="bmd-label-floating">
+                                Project
+                              </label>
+                              <input
+                                type="text"
+                                value={this.state.project}
+                                class="form-control"
+                                onChange={this.project}
+                              />
+                            </div> 
+                            <button
+                          type="submit"
+                          class="btn btn-primary pull-right"
+                        >
+                          Search By Project
+                        </button>
+                            </div>
+                            </div>
+                            </form> 
+                            </div>                  
+                        {/* <div class="btn-group">
                         <button
                           type="button"
                           class="btn btn-primary dropdown-toggle"
@@ -151,8 +210,8 @@ axios.get("https://localhost:44391/api/Task", {
                           aria-expanded="false"
                         >
                           Search By project
-                        </button>
-                        <div class="dropdown-menu" >
+                        </button> */}
+                        {/* <div class="dropdown-menu" >
                             <ul>
                             <li class="dropdown-item"  value ={this.state.project} onChange={this.projectChange} >
                             Astra
@@ -164,25 +223,33 @@ axios.get("https://localhost:44391/api/Task", {
                             FoodStore
                           </li>                 
                             </ul>   
-                        </div>
-                      </div>
-                          </div>
-                         
-                        </div>
-                      
-                      </form>
+                        </div> */}
+                         {/* <div>
+                        <select id="lang" onChange={this.projectChange} value={this.state.project}>
+                            <option value="Astra">Astra</option>
+                            <option value="Payroll">Payroll</option>
+                            <option value="FoodStore">FoodStore</option>
+                        </select>
+                        <p></p>
+                        <p>{this.state.value}</p>
+                       </div> */}
+                        </div>               
                       <table class="table">
                         <thead className=" text-primary">
+                        <th>Project</th>
                           <th>Task</th>
+                          
                           <th>Employee Name</th>
-                          <th>Project</th>
+                          
 
                           <th>Estimated Hours</th>
 
                           <th>Consumed Hours</th>
+                          <th>Deviation</th>
+                          <th>Status</th>
                           <th>Date</th>
                         </thead>
-                        <tbody></tbody>
+                        <tbody>{this.state.namesList}</tbody>
                       </table>
                     </div>
                   </div>
@@ -191,7 +258,7 @@ axios.get("https://localhost:44391/api/Task", {
             </div>
           </div>
         </div>
-      </div>
+      // </div>
     );
   }
 }

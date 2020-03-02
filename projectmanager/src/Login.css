@@ -33,10 +33,25 @@
 			height: "100%"
     } */
     .bgcolor{
-      /* background-color: #b170bc; */
-      background-color: purple;
+    
+      background-color: rgb(245, 216, 245);
     }
     .cardpadding{margin-top: 195px;}
     .calendaricon{font-size:50px;color:red;}
     /* .sidebarsize{font-size:20px;} */
+   .headname{
+  font-size: 27px;
+  color: purple;
+  font-weight: bold;
+   }
+   .scrolldiv { 
+    margin:4px, 4px; 
+    padding:4px; 
     
+    width: 1075px; 
+    height: 110px; 
+    overflow-x: hidden; 
+    overflow-x: auto; 
+    text-align:justify; 
+} 
+   
