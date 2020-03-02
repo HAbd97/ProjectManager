@@ -7,7 +7,9 @@ namespace Project_Management.Models
 {
     public class CompleteTask
     {
-            public string TaskName { get; set; }
+        public int TaskId { get; set; }
+        public int ProjectId { get; set; }
+        public string TaskName { get; set; }
             public string ProjectName { get; set; }
             public decimal ActualHours { get; set; }
             public decimal EstimatedHours { get; set; }

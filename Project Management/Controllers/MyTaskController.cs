@@ -23,6 +23,8 @@ namespace Project_Management.Controllers
                           join proj in db.Project_tbl on tsk.ProjectId equals proj.ProjectId
                           select new CompleteTask
                           {
+                              TaskId = tsk.TaskId,
+                              ProjectId = proj.ProjectId,
                               TaskName = tsk.TaskName,
                               ProjectName = proj.Project,
                               EstimatedHours = tsk.EstimatedHours,
@@ -35,7 +37,7 @@ namespace Project_Management.Controllers
         }
 
         //Post /api/MyTask with id and status
-        public HttpResponseMessage Post(int tid, int id,  int conHour, string status)
+        public HttpResponseMessage Get(int tid, int id,  int conHour, string status)
         {
             ProjectManagerEntities1 db = new ProjectManagerEntities1();
             //List<CompleteTask> result = new List<CompleteTask>();
@@ -73,7 +75,7 @@ namespace Project_Management.Controllers
             //db.SaveChanges();
             decimal sum = 0;
             var result = db.Task_tbl.SingleOrDefault(b => b.ProjectId == id && b.TaskId == tid);
-            var data = result.ConsumedHours;
+            var data = conHour;
             var estdata = result.EstimatedHours;
             var calDeviation = estdata - data;
             if (result != null)
