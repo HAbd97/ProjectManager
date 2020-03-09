@@ -7,7 +7,7 @@ class Navbar extends React.Component {
     var session = localStorage.getItem('session');
     if(session==1)
     {
-      session =0;
+      session = 0;
       this.props.history.push("/");
     }
     
@@ -56,7 +56,7 @@ class Navbar extends React.Component {
                 
                 <button type="submit" class="btn btn-primary pull-right"onClick={this.logout}>
                 Logout
-                      </button>
+                </button>
               </a>
             </div>
           </div>

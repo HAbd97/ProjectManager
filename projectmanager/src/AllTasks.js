@@ -38,8 +38,6 @@ class AllTasks extends React.Component {
                 <td>{tasks.ConsumedHours}</td>
                 <td>{tasks.Deviation}</td>
                 <td>{tasks.Status}</td>
-             
-
               </tr>
             );
           });

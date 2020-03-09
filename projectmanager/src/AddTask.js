@@ -14,13 +14,30 @@ class AddTask extends React.Component {
       description: "",
       estimatedHours: "",
       consumedHours: "",
-      date: ""
+      date: "",
+      list:""
     };
   }
+  componentDidMount(){
+    axios.get("https://localhost:44391/api/DashBoard")
+    .then(result=>{
+      var data = result.data;
+      console.log(data);
+      alert("Dash")
+      var list = data.map((dt,index) => {
+        return(
+          <option value={dt.ProjectId}>{dt.Project}</option>
+        )
+      })
+      this.setState({list:list});
+    },
+    error=>{
+      console.log("Error is in dash",error);
+    });
+    
+  }
+
   
-  projectChange = event => {
-    this.setState({ project: event.target.value });
-  };
   taskChange = event => {
     this.setState({ task: event.target.value });
   };
@@ -40,20 +57,20 @@ handleChange =event=>{
   this.setState({ ProjectId: event.target.value });
 }
 
+
+
   addTask = event => {
     var session = localStorage.getItem('session');
     var userId = localStorage.getItem('userId');
     console.log("user", userId)
     if(session == 1)
     {
-    // alert(this.state.ProjectId);
     console.log("Inside submit button");
     event.preventDefault();
-    // var msg = "";
 
     axios.post("https://localhost:44391/api/Task", {
 
-        EmpId: 3,
+        EmpId: userId,
         TaskName: this.state.task,
         Description: this.state.description,
         ProjectId: this.state.ProjectId,
@@ -64,20 +81,15 @@ handleChange =event=>{
       .then(res => {
         console.log(res);
         if (res.config.data) {
-          // alert("Added Your Task");
           this.props.history.push("/TaskList");
         } else {
-          // msg = "Sorry..Please Try Again";
           this.props.history.push("/AddTask");
-          // alert("Please try again");
         }
 
-        // this.setState({ msg: msg });
       });
     }
     else{
       alert("Not a valid user.....!!");
-      // this.props.history.push("/ProjectList");
     }
   };
   render() {
@@ -91,7 +103,6 @@ handleChange =event=>{
                 <div class="card">
                   <div class="card-header card-header-primary">
                     <h4 class="card-title">Add Task</h4>
-                    {/* <p class="card-category">Add Your Task</p> */}
                   </div>
                   <div class="card-body">
                     <form onSubmit={this.addTask}>
@@ -102,22 +113,13 @@ handleChange =event=>{
                             
                           <div >
                         <select id="lang" onChange={this.handleChange} value={this.state.ProjectId}>
-                            <option value="1">Astra</option>
-                            <option value="2">Payroll</option>
-                            <option value="3">Foodstore</option>
+                            {this.state.list}
                         </select>
                         <p></p>
                         <p>{this.state.value}</p>
                        </div>
                         
                           </div>
-                          {/* <div class="col-md-3">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Project</label>
-                          <input type="text" class="form-control"/>
-                        </div>
-                      </div>
-                      <div class="col-md-4"> */}
                           <div class="form-group">
                             <label class="bmd-label-floating">Task</label>
                             <input
@@ -129,22 +131,6 @@ handleChange =event=>{
                           </div>
                         </div>
                       </div>
-
-                      {/* <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Fist Name</label>
-                          <input type="text" class="form-control"/>
-                              
-                        </div>
-                      </div>
-                      </div> */}
-                      {/* <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Last Name</label>
-                          <input type="text" class="form-control"/>
-                        </div>
-                      </div> */}
 
                       <div class="row">
                         <div class="col-md-12">
@@ -176,19 +162,6 @@ handleChange =event=>{
                             />
                           </div>
                         </div>
-                        {/* <div class="col-md-4">
-                          <div class="form-group">
-                            <label class="bmd-label-floating">
-                              Consumed Hours
-                            </label>
-                            <input
-                              type="number"
-                              class="form-control"
-                              value={this.state.consumedHours}
-                              onChange={this.consumedHours}
-                            />
-                          </div>
-                        </div> */}
                         <div class="col-md-4">
                         <label class="bmd-label-floating">Date</label>
                           <div class="form-group">
@@ -201,24 +174,7 @@ handleChange =event=>{
                             />
                           </div>
                         </div>
-                        {/* <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Postal Code</label>
-                          <input type="text" class="form-control"/>
-                        </div>
-                      </div> */}
                       </div>
-                      {/* <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label>About Me</label>
-                          <div class="form-group">
-                            <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
-                            <textarea class="form-control" rows="5"></textarea>
-                          </div>
-                        </div>
-                      </div>
-                    </div> */}
 
                       <button type="submit" class="btn btn-primary pull-right">
                         Add Task
