@@ -13,7 +13,7 @@ namespace Project_Management.Controllers
         ProjectManagerEntities1 db = new ProjectManagerEntities1();
         public HttpResponseMessage Get()
         {
-            var data = from res in db.Project_tbl select new { res.Project, res.EstimatedHours };
+            var data = from res in db.Project_tbl select new { res.ProjectId,res.Project, res.EstimatedHours };
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
