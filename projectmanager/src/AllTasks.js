@@ -2,29 +2,28 @@ import React from "react";
 import "./Login.css";
 import axios from "axios";
 import Navbar from "./navbar";
+import { baseurl } from "./baseurl";
 
 class AllTasks extends React.Component {
- 
   constructor(props) {
     super(props);
     this.state = {};
   }
-//   logout = (event)=>{
-//         session =0;
-//   }
+  //   logout = (event)=>{
+  //         session =0;
+  //   }
   componentDidMount() {
-    var employeeName; 
+    var employeeName;
     console.log("inside function 123");
-    employeeName = JSON.parse(localStorage.getItem('user')) ;
-    console.log("Employee",employeeName);
-    var project = JSON.parse(localStorage.getItem('project'))
-    fetch("https://localhost:44391/api/Dashboard",{
+    employeeName = JSON.parse(localStorage.getItem("user"));
+    console.log("Employee", employeeName);
+    var project = JSON.parse(localStorage.getItem("project"));
+    fetch(baseurl + "/api/Dashboard", {
       method: "GET",
       headers: {
         Accept: "application/json"
       },
-      project:project
-      
+      project: project
     })
       .then(res => res.json())
       .then(
@@ -52,13 +51,13 @@ class AllTasks extends React.Component {
         }
       );
     console.log("after fetch");
-}
+  }
 
   render() {
     console.log("Namelist ", this.state);
     return (
       <div>
-      <Navbar/>
+        <Navbar />
         <div className="content">
           <div className="container-fluid">
             <div className="row">
@@ -68,27 +67,28 @@ class AllTasks extends React.Component {
                     <h4 className="card-title ">All Tasks</h4>
                     <p className="card-category"> List of tasks </p>
                     <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link " onClick={this.logout} href="/">
-                      Logout
-                    </a>
-                  </li>
-                </ul>
-              </div>
+                      <ul class="navbar-nav">
+                        <li class="nav-item">
+                          <a class="nav-link " onClick={this.logout} href="/">
+                            Logout
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                   <div className="card-body">
                     <div className="table-responsive">
                       <table className="table" id="tasks">
                         <thead className=" text-primary">
                           <th>Task</th>
-                          {/* <th>Project</th> */}
                           <th>Estimated Hours</th>
                           <th>Consumed Hours</th>
                           <th>Deviation</th>
                           <th>Status</th>
-                          <th> <div class="btn-group">
-                      </div></th>
+                          <th>
+                            {" "}
+                            <div class="btn-group"></div>
+                          </th>
                         </thead>
                         <tbody>{this.state.namesList}</tbody>
                       </table>

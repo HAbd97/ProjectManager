@@ -1,7 +1,8 @@
 import React from "react";
 import "./Login.css";
 import axios from "axios";
-import Navbar from './navbar';
+import Navbar from "./navbar";
+import { baseurl } from "./baseurl";
 
 class ProjectList extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class ProjectList extends React.Component {
   componentDidMount() {
     console.log("inside function 123");
 
-    fetch("https://localhost:44391/api/Dashboard", {
+    fetch(baseurl + "/api/Dashboard", {
       method: "GET",
       headers: {
         Accept: "application/json"
@@ -24,16 +25,12 @@ class ProjectList extends React.Component {
         result => {
           var namesList = result.map((tasks, index) => {
             console.log(tasks);
-            localStorage.setItem('project', JSON.stringify(tasks.Project) );
-            
+            localStorage.setItem("project", JSON.stringify(tasks.Project));
+
             return (
-              
               <tr key={tasks.Project}>
                 <td>{tasks.Project}</td>
                 <td>{tasks.EstimatedHours}</td>
-                {/* <td>{tasks.ActualHours}</td>
-                                  
-                                  <td>{tasks.Status}</td> */}
               </tr>
             );
           });
@@ -55,7 +52,7 @@ class ProjectList extends React.Component {
     console.log("Namelist ", this.state);
     return (
       <div>
-      <Navbar/>
+        <Navbar />
         <div className="content">
           <div className="container-fluid">
             <div className="row">

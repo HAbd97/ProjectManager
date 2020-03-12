@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { baseurl } from "./baseurl";
 
 class UserLogin extends React.Component {
   constructor(props) {
@@ -21,28 +22,34 @@ class UserLogin extends React.Component {
     // console.log("Inside submit button");
     event.preventDefault();
     var msg = "";
-    var session ;
+    var session;
     // alert(this.state.username);
     // alert(this.state.password);
 
-    fetch(`https://localhost:44391/api/Login?username=${this.state.username}&password=${this.state.password}`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json"
+    fetch(
+      `${baseurl}/api/Login?username=${this.state.username}&password=${this.state.password}`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json"
+        }
       }
-    })
+    )
       .then(res => res.json())
       .then(
         result => {
           console.log(result);
-          if (result[0].Username==this.state.username && result[0].Password==this.state.password) {
+          if (
+            result[0].Username == this.state.username &&
+            result[0].Password == this.state.password
+          ) {
             // alert("Successful Login");
             session = 1;
-            localStorage.setItem('user', JSON.stringify(result[0].Username));
-            localStorage.setItem('userId', result[0].userId);
-            localStorage.setItem('session',1);
-            console.log(result[0].Username,result[0].userId);
-            
+            localStorage.setItem("user", JSON.stringify(result[0].Username));
+            localStorage.setItem("userId", result[0].userId);
+            localStorage.setItem("session", 1);
+            console.log(result[0].Username, result[0].userId);
+
             this.props.history.push("/TaskList");
           } else {
             // alert("Invalid Username or Password...!!!")
@@ -51,7 +58,7 @@ class UserLogin extends React.Component {
         },
         error => {
           console.log("error");
-          console.log(error);
+          console.log(error.message);
         }
       );
 
@@ -62,12 +69,12 @@ class UserLogin extends React.Component {
     return (
       <div>
         <div className="row">
-        <div className="col-md-12 container-fluid">
-        <div className="card-header card-header-primary">
-                    <h4 className="card-title headname">PMTracker</h4>
-                  </div>
+          <div className="col-md-12 container-fluid">
+            <div className="card-header card-header-primary">
+              <h4 className="card-title headname">PMTracker</h4>
+            </div>
+          </div>
         </div>
-        </div>  
         <div className="content">
           <div className="container-fluid">
             <div className="row">
