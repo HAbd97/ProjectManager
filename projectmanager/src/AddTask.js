@@ -5,7 +5,6 @@ import Navbar from "./navbar";
 import { baseurl } from "./baseurl";
 
 class AddTask extends React.Component {
-  
   constructor(props) {
     super(props);
     this.state = {
@@ -24,7 +23,11 @@ class AddTask extends React.Component {
         var data = result.data;
         console.log(data);
         var list = data.map((dt, index) => {
-          return <option key={index} value={dt.ProjectId}>{dt.Project}</option>;
+          return (
+            <option key={index} value={dt.ProjectId}>
+              {dt.Project}
+            </option>
+          );
         });
         this.setState({ list: list });
         console.log(this.state.list);
@@ -52,6 +55,7 @@ class AddTask extends React.Component {
   };
   handleChange = event => {
     this.setState({ ProjectId: event.target.value });
+    console.log("ProjectId is  ", this.state.ProjectId);
   };
 
   addTask = event => {
@@ -110,6 +114,9 @@ class AddTask extends React.Component {
                                 onChange={this.handleChange}
                                 value={this.state.ProjectId}
                               >
+                                <option disabled selected>
+                                  Choose a Project
+                                </option>
                                 {this.state.list}
                               </select>
                             </div>
