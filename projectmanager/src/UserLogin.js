@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
 import { baseurl } from "./baseurl";
 
 class UserLogin extends React.Component {
@@ -23,8 +22,6 @@ class UserLogin extends React.Component {
     event.preventDefault();
     var msg = "";
     var session;
-    // alert(this.state.username);
-    // alert(this.state.password);
 
     fetch(
       `${baseurl}/api/Login?username=${this.state.username}&password=${this.state.password}`,

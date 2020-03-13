@@ -1,6 +1,5 @@
 import React from "react";
 import "./Login.css";
-import axios from "axios";
 import Navbar from "./navbar";
 import { baseurl } from "./baseurl";
 

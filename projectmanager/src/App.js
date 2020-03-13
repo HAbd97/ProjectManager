@@ -1,6 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
-import Navbar from "./navbar";
 import "./App.css";
 import AllTasks from './AllTasks';
 import UserLogin from "./UserLogin";

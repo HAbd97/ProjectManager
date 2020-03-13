@@ -52,9 +52,7 @@ class Navbar extends React.Component {
               <a href="/"
                 class="nav-link"
               >
-                 {/* <i class="fa fa-user" aria-hidden="true"></i> */}
-                
-                <button type="submit" class="btn btn-primary pull-right"onClick={this.logout}>
+                <button type="submit" class="btn btn-primary pull-right logLeft" onClick={this.logout}>
                 Logout
                 </button>
               </a>

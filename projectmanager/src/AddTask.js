@@ -1,17 +1,11 @@
-import React, { useState } from "react";
-import {
-  Button,
-  FormGroup,
-  FormControl,
-  ControlLabel,
-  Nav
-} from "react-bootstrap";
+import React from "react";
 import "./Login.css";
 import axios from "axios";
 import Navbar from "./navbar";
 import { baseurl } from "./baseurl";
 
 class AddTask extends React.Component {
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -30,9 +24,10 @@ class AddTask extends React.Component {
         var data = result.data;
         console.log(data);
         var list = data.map((dt, index) => {
-          return <option value={dt.ProjectId}>{dt.Project}</option>;
+          return <option key={index} value={dt.ProjectId}>{dt.Project}</option>;
         });
         this.setState({ list: list });
+        console.log(this.state.list);
       },
       error => {
         console.log("Error is in dash", error);
@@ -111,13 +106,12 @@ class AddTask extends React.Component {
                             <div>
                               <select
                                 id="lang"
+                                class="browser-default custom-select"
                                 onChange={this.handleChange}
                                 value={this.state.ProjectId}
                               >
                                 {this.state.list}
                               </select>
-                              <p></p>
-                              <p>{this.state.value}</p>
                             </div>
                           </div>
                           <div class="form-group">
