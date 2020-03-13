@@ -38,8 +38,8 @@ class Search extends React.Component {
           var namesList = result.data.map((tasks, index) => {
             return (
               <tr key={tasks.TaskName}>
-                <td>{tasks.TaskName}</td>
                 <td>{tasks.ProjectName}</td>
+                <td>{tasks.TaskName}</td>
                 <td>{tasks.EmployeeName}</td>
                 <td>{tasks.EstimatedHours}</td>
                 <td>{tasks.ConsumedHours}</td>

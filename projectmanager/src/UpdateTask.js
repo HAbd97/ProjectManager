@@ -81,36 +81,11 @@ class UpdateTask extends React.Component {
                           </div>
                           <br></br>
                           <br></br>
-                          {/* <div class="btn-group">
-                        <button
-                          type="button"
-                          class="btn btn-primary dropdown-toggle"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          Status
-                        </button> */}
-                          {/* <div class="dropdown-menu" onChange={this.statusChange}>
-                            <ul>
-                            <li class="dropdown-item"  value ="Not Started"  >
-                            Not Started
-                          </li>
-                          <li class="dropdown-item"  value ="On Going"  >
-                            On Going
-                          </li>
-                          <li class="dropdown-item"  value ="Partial" >
-                            Partial
-                          </li>
-                          <li class="dropdown-item"  value ="Completed" >
-                            Completed
-                          </li>
-                            </ul>   
-                        </div> */}
                           <div>
                             <select
                               id="lang"
                               onChange={this.status}
+                              class="browser-default custom-select"
                               value={this.state.status}
                             >
                               <option value="Not Started">Not Started</option>
@@ -122,7 +97,6 @@ class UpdateTask extends React.Component {
                           </div>
                         </div>
                       </div>
-                      {/* </div> */}
 
                       <button type="submit" class="btn btn-primary pull-right">
                         Save Changes
