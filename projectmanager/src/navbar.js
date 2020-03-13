@@ -1,22 +1,18 @@
 import React from "react";
 import "./App.css";
+
 class Navbar extends React.Component {
- 
-  logout=(event)=>
-  {
-    var session = localStorage.getItem('session');
-    if(session==1)
-    {
-      session = 0;
-      this.props.history.push("/");
-    } 
-  }
+  logout = () => {
+    localStorage.setItem("session", 0);
+    localStorage.removeItem("user");
+    localStorage.removeItem("userId");
+    this.props.history.push("/");
+  };
 
   render() {
     return (
       <div>
         <div className="row container-fluid">
-
           <div className="col-lg-3 sidebar sidebarwidth container-fluid">
             <div
               class="nav flex-column nav-pills bg-light navwidth"
@@ -24,63 +20,31 @@ class Navbar extends React.Component {
               role="tablist"
               aria-orientation="vertical"
             >
-              <h3 className="headname"><i class="fa fa-calendar "  ></i>PMTracker</h3>
-              <a
-                class="nav-link"
-                href="/ProjectList"
-              >
+              <h3 className="headname">
+                <i class="fa fa-calendar "></i>PMTracker
+              </h3>
+              <a class="nav-link" href="/ProjectList">
                 All Projects
               </a>
-              <a
-                class="nav-link"
-                href="/TaskList"
-              >
+              <a class="nav-link" href="/TaskList">
                 My Tasks
               </a>
-              <a
-                class="nav-link"
-                href="/AddTask"
-              >
+              <a class="nav-link" href="/AddTask">
                 Add Task
               </a>
-              <a href="/Search"
-                class="nav-link"
-              >
+              <a href="/Search" class="nav-link">
                 Search
               </a>
-              <a href="/"
-                class="nav-link"
-              >
-                <button type="submit" class="btn btn-primary pull-right" onClick={this.logout}>
-                Logout
+              <a href="/" class="nav-link">
+                <button
+                  class="btn btn-primary pull-right"
+                  onClick={this.logout}
+                >
+                  Logout
                 </button>
               </a>
             </div>
           </div>
-          {/* <div className="col-lg-8 container-fluid">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-end navfloat">
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarNav"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link " href="/">
-                      Logout
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </nav>
-          </div> */}
         </div>
       </div>
     );

@@ -8,12 +8,9 @@ class AllTasks extends React.Component {
     super(props);
     this.state = {};
   }
-  //   logout = (event)=>{
-  //         session =0;
-  //   }
+  
   componentDidMount() {
     var employeeName;
-    console.log("inside function 123");
     employeeName = JSON.parse(localStorage.getItem("user"));
     console.log("Employee", employeeName);
     var project = JSON.parse(localStorage.getItem("project"));

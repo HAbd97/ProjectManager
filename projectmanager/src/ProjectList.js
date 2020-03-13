@@ -11,39 +11,41 @@ class ProjectList extends React.Component {
   // TableData() {
 
   componentDidMount() {
-    console.log("inside function 123");
-
-    fetch(baseurl + "/api/Dashboard", {
-      method: "GET",
-      headers: {
-        Accept: "application/json"
-      }
-    })
-      .then(res => res.json())
-      .then(
-        result => {
-          var namesList = result.map((tasks, index) => {
-            console.log(tasks);
-            localStorage.setItem("project", JSON.stringify(tasks.Project));
-
-            return (
-              <tr key={tasks.Project}>
-                <td>{tasks.Project}</td>
-                <td>{tasks.EstimatedHours}</td>
-              </tr>
-            );
-          });
-
-          this.setState({
-            namesList: namesList
-          });
-        },
-        error => {
-          console.log("error");
-          console.log(error);
+    var session = localStorage.getItem("session");
+    if (session == 1) {
+      fetch(baseurl + "/api/Dashboard", {
+        method: "GET",
+        headers: {
+          Accept: "application/json"
         }
-      );
-    //   this.setState({task:task});
+      })
+        .then(res => res.json())
+        .then(
+          result => {
+            var namesList = result.map((tasks, index) => {
+              console.log(tasks);
+              localStorage.setItem("project", JSON.stringify(tasks.Project));
+
+              return (
+                <tr key={tasks.Project}>
+                  <td>{tasks.Project}</td>
+                  <td>{tasks.EstimatedHours}</td>
+                </tr>
+              );
+            });
+
+            this.setState({
+              namesList: namesList
+            });
+          },
+          error => {
+            console.log("error");
+            console.log(error);
+          }
+        );
+    } else {
+      alert("Session Not Found");
+    }
     console.log("after fetch");
   }
 

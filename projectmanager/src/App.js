@@ -1,16 +1,15 @@
 import React from "react";
 import "./App.css";
-import AllTasks from './AllTasks';
+import AllTasks from "./AllTasks";
 import UserLogin from "./UserLogin";
 import ProjectList from "./ProjectList";
 import TaskList from "./TaskList";
 import Search from "./Search";
 import AddTask from "./AddTask";
 import UpdateTask from "./UpdateTask";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Redirect } from "react-router-dom";
+import ses from "./isLoggedIn";
 class App extends React.Component {
-  
-  
   render() {
     return (
       <div>
@@ -29,4 +28,5 @@ class App extends React.Component {
     );
   }
 }
+// ses ={() => ses.session == 1 ? <Redirect to="/" /> : <UserLogin />}
 export default App;

@@ -18,24 +18,30 @@ class AddTask extends React.Component {
     };
   }
   componentDidMount() {
-    axios.get(baseurl + "/api/DashBoard").then(
-      result => {
-        var data = result.data;
-        console.log(data);
-        var list = data.map((dt, index) => {
-          return (
-            <option key={index} value={dt.ProjectId}>
-              {dt.Project}
-            </option>
-          );
-        });
-        this.setState({ list: list });
-        console.log(this.state.list);
-      },
-      error => {
-        console.log("Error is in dash", error);
-      }
-    );
+    var session = localStorage.getItem("session");
+    if(session == 1){
+      axios.get(baseurl + "/api/DashBoard").then(
+        result => {
+          var data = result.data;
+          console.log(data);
+          var list = data.map((dt, index) => {
+            return (
+              <option key={index} value={dt.ProjectId}>
+                {dt.Project}
+              </option>
+            );
+          });
+          this.setState({ list: list });
+          console.log(this.state.list);
+        },
+        error => {
+          console.log("Error is in dash", error);
+        }
+      );
+    }
+    else{
+      alert("Session not found");
+    }
   }
 
   taskChange = event => {
