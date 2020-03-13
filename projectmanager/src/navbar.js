@@ -2,17 +2,16 @@ import React from "react";
 import "./App.css";
 class Navbar extends React.Component {
  
-  logout=(e)=>
+  logout=(event)=>
   {
     var session = localStorage.getItem('session');
     if(session==1)
     {
       session = 0;
       this.props.history.push("/");
-    }
-    
-
+    } 
   }
+
   render() {
     return (
       <div>
@@ -52,7 +51,7 @@ class Navbar extends React.Component {
               <a href="/"
                 class="nav-link"
               >
-                <button type="submit" class="btn btn-primary pull-right logLeft" onClick={this.logout}>
+                <button type="submit" class="btn btn-primary pull-right" onClick={this.logout}>
                 Logout
                 </button>
               </a>
