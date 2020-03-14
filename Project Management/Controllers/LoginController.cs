@@ -51,12 +51,6 @@ namespace Project_Management.Controllers
                                    Password = res.Password
                                };
 
-                    //var data1 = db.Employee_tbl.Where(res => res.Username == username && res.Password == password).Select(res => new UserDetails
-                    //{
-                    //    userId = res.EmpId,
-                    //    Username = res.Username,
-                    //    Password = res.Password
-                    //}).FirstOrDefault();
 
                     return Request.CreateResponse(HttpStatusCode.OK, data);
                 }

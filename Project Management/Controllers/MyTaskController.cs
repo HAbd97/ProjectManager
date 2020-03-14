@@ -36,43 +36,33 @@ namespace Project_Management.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
+        //Get /api/MyTask with Employee Id
+        public HttpResponseMessage Get(int id)
+        {
+            ProjectManagerEntities db = new ProjectManagerEntities();
+            var result = (from emp in db.Employee_tbl
+                          join tsk in db.Task_tbl on emp.EmpId equals tsk.EmpId
+                          join proj in db.Project_tbl on tsk.ProjectId equals proj.ProjectId
+                          where emp.EmpId == id
+                          select new CompleteTask
+                          {
+                              TaskId = tsk.TaskId,
+                              ProjectId = proj.ProjectId,
+                              TaskName = tsk.TaskName,
+                              ProjectName = proj.Project,
+                              EstimatedHours = tsk.EstimatedHours,
+                              ConsumedHours = tsk.ConsumedHours,
+                              Deviation = tsk.Deviation,
+                              Status = tsk.Status
+                          }).ToList();
+            return Request.CreateResponse(HttpStatusCode.OK, result);
+        }
+
         //Post /api/MyTask with id and status
         public HttpResponseMessage Get(int tid, int id,  int conHour, string status)
         {
             ProjectManagerEntities1 db = new ProjectManagerEntities1();
-            //List<CompleteTask> result = new List<CompleteTask>();
-            //result = (from tsk in db.Task_tbl
-            //              join proj in db.Project_tbl on tsk.ProjectId equals proj.ProjectId
-            //              where tsk.TaskId == id
-            //              select new CompleteTask
-            //              {
-            //                  ConsumedHours = conHour,
-            //                  EstimatedHours = tsk.EstimatedHours,
-            //                  Deviation = tsk.EstimatedHours - conHour,
-            //                  Status = status
-
-            //              }).ToList();
-
-            //List<Project_tbl> res = new List<Project_tbl>();
-            //res = (from tsk in db.Task_tbl
-            //      join proj in db.Project_tbl on tsk.ProjectId equals proj.ProjectId
-            //      where tsk.TaskId == id
-            //      select new Project_tbl
-            //      {
-            //          ActualHours = sum
-            //      }).ToList();
-
-            //var projdata = (from tsk in db.Task_tbl
-            //                join proj in db.Project_tbl on tsk.ProjectId equals proj.ProjectId
-            //                where tsk.TaskId == id
-            //                select new CompleteTask
-            //                {
-
-            //                    ActualHours = sum
-
-
-            //                }).ToList();
-            //db.SaveChanges();
+            
             decimal sum = 0;
             var result = db.Task_tbl.SingleOrDefault(b => b.ProjectId == id && b.TaskId == tid);
             var data = conHour;

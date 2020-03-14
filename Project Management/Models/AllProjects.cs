@@ -12,7 +12,7 @@ namespace Project_Management.Models
         public string EmpName { get; set; }
         public decimal? ConsumedHours { get; set; }
         public decimal EstimatedHours { get; set; }
-        public decimal? Derivation { get; set; }
+        public decimal? Deviation { get; set; }
         public DateTime  Date { get; set; }
        
         public string Status { get; set; }

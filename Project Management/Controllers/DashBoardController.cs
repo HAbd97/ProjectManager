@@ -30,7 +30,7 @@ namespace Project_Management.Controllers
                                EmpName = user.EmpName,
                                ConsumedHours = task.ConsumedHours,
                                EstimatedHours = task.EstimatedHours,
-                                Derivation = task.Deviation,
+                               Deviation = task.Deviation,
                                Date = task.TaskDate,
                                Status = task.Status
 
