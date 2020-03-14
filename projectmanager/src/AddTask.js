@@ -19,7 +19,7 @@ class AddTask extends React.Component {
   }
   componentDidMount() {
     var session = localStorage.getItem("session");
-    if(session == 1){
+    if (session == 1) {
       axios.get(baseurl + "/api/DashBoard").then(
         result => {
           var data = result.data;
@@ -38,8 +38,7 @@ class AddTask extends React.Component {
           console.log("Error is in dash", error);
         }
       );
-    }
-    else{
+    } else {
       alert("Session not found");
     }
   }

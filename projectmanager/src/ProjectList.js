@@ -8,7 +8,6 @@ class ProjectList extends React.Component {
     super(props);
     this.state = {};
   }
- 
 
   componentDidMount() {
     var session = localStorage.getItem("session");
@@ -23,12 +22,21 @@ class ProjectList extends React.Component {
         .then(
           result => {
             var namesList = result.map((tasks, index) => {
-              console.log("Projects",tasks);
+              console.log("Projects", tasks);
               localStorage.setItem("project", JSON.stringify(tasks.Project));
-              console.log("ProjectName",localStorage.getItem("project"));
+              console.log("ProjectName", localStorage.getItem("project"));
               return (
                 <tr key={tasks.Project}>
-                  <td><a href="/AllTasks" onClick={()=>localStorage.setItem("projectName",tasks.Project)}>{tasks.Project}</a></td>
+                  <td>
+                    <a
+                      href="/AllTasks"
+                      onClick={() =>
+                        localStorage.setItem("projectName", tasks.Project)
+                      }
+                    >
+                      {tasks.Project}
+                    </a>
+                  </td>
                   <td>{tasks.EstimatedHours}</td>
                 </tr>
               );
@@ -46,7 +54,6 @@ class ProjectList extends React.Component {
     } else {
       alert("Session Not Found");
     }
-    console.log("after fetch");
   }
 
   render() {

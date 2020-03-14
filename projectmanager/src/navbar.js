@@ -37,7 +37,7 @@ class Navbar extends React.Component {
               </a>
               <a href="/" class="nav-link">
                 <button
-                  class="btn btn-primary pull-right"
+                  class="btn btn-primary pull-right logLeft"
                   onClick={this.logout}
                 >
                   Logout

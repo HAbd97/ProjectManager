@@ -93,7 +93,6 @@ class TaskList extends React.Component {
                         <thead className=" text-primary">
                           <th>Project</th>
                           <th>Task</th>
-
                           <th>Estimated Hours</th>
                           <th>Consumed Hours</th>
                           <th>Deviation</th>
@@ -101,33 +100,8 @@ class TaskList extends React.Component {
                           <th>
                             {" "}
                             <div class="btn-group">
-                              {/* <button
-                          type="button"
-                          class="btn btn-danger dropdown-toggle"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          Search By project
-                        </button> */}
-                              {/* <div class="dropdown-menu">
-                          <a class="dropdown-item" href="#">
-                            Action
-                          </a>
-                          <a class="dropdown-item" href="#">
-                            Another action
-                          </a>
-                          <a class="dropdown-item" href="#">
-                            Something else here
-                          </a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">
-                            Separated link
-                          </a>
-                        </div> */}
                             </div>
                           </th>
-                          {/* <td><a href="/UpdateTask">Update</a></td> */}
                         </thead>
                         <tbody>{this.state.namesList}</tbody>
                       </table>

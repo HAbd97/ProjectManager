@@ -7,18 +7,15 @@ class UserLogin extends React.Component {
     this.state = { username: "", password: "" };
   }
   getUsername = event => {
-    // console.log("Inside Username change function");
     this.setState({ username: event.target.value });
     event.preventDefault();
   };
   getPassword = event => {
-    // console.log("Inside Password change function");
     this.setState({ password: event.target.value });
     event.preventDefault();
   };
 
   submitMe = event => {
-    // console.log("Inside submit button");
     event.preventDefault();
     var msg = "";
     var session;
@@ -40,7 +37,6 @@ class UserLogin extends React.Component {
             result[0].Username == this.state.username &&
             result[0].Password == this.state.password
           ) {
-            // alert("Successful Login");
             session = 1;
             localStorage.setItem("user", JSON.stringify(result[0].Username));
             localStorage.setItem("userId", result[0].userId);

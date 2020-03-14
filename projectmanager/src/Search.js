@@ -79,7 +79,6 @@ class Search extends React.Component {
             toDate: this.state.dateto
           }
         })
-        // .then(res => res.data.json())
         .then(result => {
           console.log(result);
           var namesList = result.data.map((tasks, index) => {
@@ -184,11 +183,8 @@ class Search extends React.Component {
                       <thead className=" text-primary">
                         <th>Project</th>
                         <th>Task</th>
-
                         <th>Employee Name</th>
-
                         <th>Estimated Hours</th>
-
                         <th>Consumed Hours</th>
                         <th>Deviation</th>
                         <th>Status</th>

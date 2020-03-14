@@ -2,20 +2,19 @@ import React from "react";
 import "./Login.css";
 import Navbar from "./navbar";
 import { baseurl } from "./baseurl";
-import axios from "axios";
 
 class AllTasks extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
-  
+
   componentDidMount() {
     var employeeName;
     employeeName = JSON.parse(localStorage.getItem("user"));
     console.log("Employee", employeeName);
     var project = localStorage.getItem("projectName");
-    console.log("ProjectName is ",project);
+    console.log("ProjectName is ", project);
     fetch(`${baseurl}/api/DashBoard?ProjctName=${project}`, {
       method: "GET",
       headers: {
@@ -49,7 +48,7 @@ class AllTasks extends React.Component {
         }
       );
     console.log("after fetch");
-    localStorage.removeItem("projectName")
+    localStorage.removeItem("projectName");
   }
 
   render() {

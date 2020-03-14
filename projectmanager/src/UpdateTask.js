@@ -25,7 +25,6 @@ class UpdateTask extends React.Component {
     this.setState({ status: event.target.value });
   };
   updateTask = event => {
-    // alert(this.state.status);
     event.preventDefault();
     let url = this.props.location.search;
     let params = queryString.parse(url);
