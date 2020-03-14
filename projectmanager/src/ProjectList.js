@@ -8,7 +8,7 @@ class ProjectList extends React.Component {
     super(props);
     this.state = {};
   }
-  // TableData() {
+ 
 
   componentDidMount() {
     var session = localStorage.getItem("session");
@@ -23,12 +23,12 @@ class ProjectList extends React.Component {
         .then(
           result => {
             var namesList = result.map((tasks, index) => {
-              console.log(tasks);
+              console.log("Projects",tasks);
               localStorage.setItem("project", JSON.stringify(tasks.Project));
-
+              console.log("ProjectName",localStorage.getItem("project"));
               return (
                 <tr key={tasks.Project}>
-                  <td>{tasks.Project}</td>
+                  <td><a href="/AllTasks" onClick={()=>localStorage.setItem("projectName",tasks.Project)}>{tasks.Project}</a></td>
                   <td>{tasks.EstimatedHours}</td>
                 </tr>
               );

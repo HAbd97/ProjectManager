@@ -2,6 +2,7 @@ import React from "react";
 import "./Login.css";
 import Navbar from "./navbar";
 import { baseurl } from "./baseurl";
+import axios from "axios";
 
 class AllTasks extends React.Component {
   constructor(props) {
@@ -13,22 +14,23 @@ class AllTasks extends React.Component {
     var employeeName;
     employeeName = JSON.parse(localStorage.getItem("user"));
     console.log("Employee", employeeName);
-    var project = JSON.parse(localStorage.getItem("project"));
-    fetch(baseurl + "/api/Dashboard", {
+    var project = localStorage.getItem("projectName");
+    console.log("ProjectName is ",project);
+    fetch(`${baseurl}/api/DashBoard?ProjctName=${project}`, {
       method: "GET",
       headers: {
         Accept: "application/json"
-      },
-      project: project
+      }
     })
       .then(res => res.json())
       .then(
         result => {
+          console.log(result);
           var namesList = result.map((tasks, index) => {
             return (
               <tr key={tasks.TaskName}>
                 <td>{tasks.TaskName}</td>
-                <td>{tasks.employeeName}</td>
+                <td>{tasks.EmpName}</td>
                 <td>{tasks.EstimatedHours}</td>
                 <td>{tasks.ConsumedHours}</td>
                 <td>{tasks.Deviation}</td>
@@ -47,6 +49,7 @@ class AllTasks extends React.Component {
         }
       );
     console.log("after fetch");
+    localStorage.removeItem("projectName")
   }
 
   render() {
@@ -62,27 +65,18 @@ class AllTasks extends React.Component {
                   <div className="card-header card-header-primary">
                     <h4 className="card-title ">All Tasks</h4>
                     <p className="card-category"> List of tasks </p>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                      <ul class="navbar-nav">
-                        <li class="nav-item">
-                          <a class="nav-link " onClick={this.logout} href="/">
-                            Logout
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
                   </div>
                   <div className="card-body">
                     <div className="table-responsive">
                       <table className="table" id="tasks">
                         <thead className=" text-primary">
                           <th>Task</th>
+                          <th>Employee Name</th>
                           <th>Estimated Hours</th>
                           <th>Consumed Hours</th>
                           <th>Deviation</th>
                           <th>Status</th>
                           <th>
-                            {" "}
                             <div class="btn-group"></div>
                           </th>
                         </thead>

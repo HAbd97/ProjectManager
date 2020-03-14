@@ -2,6 +2,7 @@ import React from "react";
 import "./Login.css";
 import Navbar from "./navbar";
 import { baseurl } from "./baseurl";
+import axios from "axios";
 
 class TaskList extends React.Component {
   constructor(props) {
@@ -10,25 +11,27 @@ class TaskList extends React.Component {
   }
   componentDidMount() {
     var session;
-    console.log("inside function 123");
     session = localStorage.getItem("session");
+    var userId = localStorage.getItem("userId");
+
     if (session == 1) {
-      fetch(baseurl + "/api/MyTask", {
-        method: "GET",
-        headers: {
-          Accept: "application/json"
-        }
-      })
+      console.log("userId", userId);
+      fetch(`${baseurl}/api/MyTask?id=${userId}`, {
+          method:"GET",
+          headers: {
+            Accept: "application/json"
+          }
+        })
         .then(res => res.json())
         .then(
           result => {
+            console.log(result);
             var namesList = result.map((tasks, index) => {
               // localStorage.setItem('projectid1', tasks.ProjectId);
               return (
                 <tr key={tasks.TaskName}>
                   <td>{tasks.ProjectName}</td>
                   <td>{tasks.TaskName}</td>
-
                   <td>{tasks.EstimatedHours}</td>
                   <td>{tasks.ConsumedHours}</td>
                   <td>{tasks.Deviation}</td>
